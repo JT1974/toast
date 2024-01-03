@@ -246,6 +246,28 @@ body {
   color: var(--color-error);
 }
 
+@keyframes _YfUPa_toast {
+  from {
+    transform: translateX(calc(100% + 64px));
+  }
+}
+
+._YfUPa_wrapper {
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  list-style-type: none;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+._YfUPa_toastWrapper {
+  will-change: transform;
+  animation: .8s cubic-bezier(0, .46, 0, 1.04) both _YfUPa_toast;
+}
+
 .BOBUQq_wrapper {
   text-align: center;
   max-width: 500px;
