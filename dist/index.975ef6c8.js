@@ -27221,6 +27221,7 @@ var _button = require("../Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _toastPlaygroundModuleCss = require("./ToastPlayground.module.css");
 var _toastPlaygroundModuleCssDefault = parcelHelpers.interopDefault(_toastPlaygroundModuleCss);
+var _s = $RefreshSig$();
 const VARIANT_OPTIONS = [
     "notice",
     "warning",
@@ -27228,6 +27229,9 @@ const VARIANT_OPTIONS = [
     "error"
 ];
 function ToastPlayground() {
+    _s();
+    const [toastVariant, setToastVariant] = (0, _reactDefault.default).useState(VARIANT_OPTIONS[0]);
+    const [toastMessage, setToastMessage] = (0, _reactDefault.default).useState("");
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: (0, _toastPlaygroundModuleCssDefault.default).wrapper,
         children: [
@@ -27238,21 +27242,21 @@ function ToastPlayground() {
                         src: "/toast.png"
                     }, void 0, false, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 13,
-                        columnNumber: 9
+                        lineNumber: 16,
+                        columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                         children: "Toast Playground"
                     }, void 0, false, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 14,
-                        columnNumber: 9
+                        lineNumber: 17,
+                        columnNumber: 5
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                lineNumber: 12,
-                columnNumber: 7
+                lineNumber: 15,
+                columnNumber: 4
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: (0, _toastPlaygroundModuleCssDefault.default).controlsWrapper,
@@ -27269,29 +27273,31 @@ function ToastPlayground() {
                                 children: "Message"
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 19,
-                                columnNumber: 11
+                                lineNumber: 22,
+                                columnNumber: 6
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: (0, _toastPlaygroundModuleCssDefault.default).inputWrapper,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("textarea", {
                                     id: "message",
-                                    className: (0, _toastPlaygroundModuleCssDefault.default).messageInput
+                                    className: (0, _toastPlaygroundModuleCssDefault.default).messageInput,
+                                    value: toastMessage,
+                                    onChange: (event)=>setToastMessage(event.target.value)
                                 }, void 0, false, {
                                     fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                    lineNumber: 27,
-                                    columnNumber: 13
+                                    lineNumber: 26,
+                                    columnNumber: 7
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 26,
-                                columnNumber: 11
+                                lineNumber: 25,
+                                columnNumber: 6
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 18,
-                        columnNumber: 9
+                        lineNumber: 21,
+                        columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         className: (0, _toastPlaygroundModuleCssDefault.default).row,
@@ -27301,41 +27307,42 @@ function ToastPlayground() {
                                 children: "Variant"
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 32,
-                                columnNumber: 11
+                                lineNumber: 36,
+                                columnNumber: 6
                             }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: `${(0, _toastPlaygroundModuleCssDefault.default).inputWrapper} ${(0, _toastPlaygroundModuleCssDefault.default).radioWrapper}`,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                                    htmlFor: "variant-notice",
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                                            id: "variant-notice",
-                                            type: "radio",
-                                            name: "variant",
-                                            value: "notice"
-                                        }, void 0, false, {
-                                            fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                            lineNumber: 37,
-                                            columnNumber: 15
-                                        }, this),
-                                        "notice"
-                                    ]
-                                }, void 0, true, {
+                            VARIANT_OPTIONS?.map((variant)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: `${(0, _toastPlaygroundModuleCssDefault.default).inputWrapper} ${(0, _toastPlaygroundModuleCssDefault.default).radioWrapper}`,
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                                        htmlFor: `variant-${variant}`,
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                                id: `variant-${variant}`,
+                                                type: "radio",
+                                                name: "variant",
+                                                checked: toastVariant === variant,
+                                                onChange: ()=>setToastVariant(variant)
+                                            }, void 0, false, {
+                                                fileName: "src/components/ToastPlayground/ToastPlayground.js",
+                                                lineNumber: 40,
+                                                columnNumber: 9
+                                            }, this),
+                                            variant
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/ToastPlayground/ToastPlayground.js",
+                                        lineNumber: 39,
+                                        columnNumber: 8
+                                    }, this)
+                                }, variant, false, {
                                     fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                    lineNumber: 36,
-                                    columnNumber: 13
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 33,
-                                columnNumber: 11
-                            }, this)
+                                    lineNumber: 38,
+                                    columnNumber: 7
+                                }, this))
                         ]
                     }, void 0, true, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 31,
-                        columnNumber: 9
+                        lineNumber: 35,
+                        columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         className: (0, _toastPlaygroundModuleCssDefault.default).row,
@@ -27344,8 +27351,8 @@ function ToastPlayground() {
                                 className: (0, _toastPlaygroundModuleCssDefault.default).label
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 51,
-                                columnNumber: 11
+                                lineNumber: 54,
+                                columnNumber: 6
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: `${(0, _toastPlaygroundModuleCssDefault.default).inputWrapper} ${(0, _toastPlaygroundModuleCssDefault.default).radioWrapper}`,
@@ -27353,33 +27360,34 @@ function ToastPlayground() {
                                     children: "Pop Toast!"
                                 }, void 0, false, {
                                     fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                    lineNumber: 55,
-                                    columnNumber: 13
+                                    lineNumber: 56,
+                                    columnNumber: 7
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 52,
-                                columnNumber: 11
+                                lineNumber: 55,
+                                columnNumber: 6
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 50,
-                        columnNumber: 9
+                        lineNumber: 53,
+                        columnNumber: 5
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                lineNumber: 17,
-                columnNumber: 7
+                lineNumber: 20,
+                columnNumber: 4
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-        lineNumber: 11,
-        columnNumber: 5
+        lineNumber: 14,
+        columnNumber: 3
     }, this);
 }
+_s(ToastPlayground, "PIq3mfnRcbTMlU4G81+jxfFQmnc=");
 _c = ToastPlayground;
 exports.default = ToastPlayground;
 var _c;
