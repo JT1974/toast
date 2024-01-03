@@ -27219,8 +27219,8 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _button = require("../Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _toast = require("../Toast");
-var _toastDefault = parcelHelpers.interopDefault(_toast);
+var _toastShelf = require("../ToastShelf");
+var _toastShelfDefault = parcelHelpers.interopDefault(_toastShelf);
 var _toastPlaygroundModuleCss = require("./ToastPlayground.module.css");
 var _toastPlaygroundModuleCssDefault = parcelHelpers.interopDefault(_toastPlaygroundModuleCss);
 var _s = $RefreshSig$();
@@ -27234,7 +27234,26 @@ function ToastPlayground() {
     _s();
     const [toastVariant, setToastVariant] = (0, _reactDefault.default).useState(VARIANT_OPTIONS[0]);
     const [toastMessage, setToastMessage] = (0, _reactDefault.default).useState("");
-    const [showToast, setShowToast] = (0, _reactDefault.default).useState(false);
+    const [toasts, setToasts] = (0, _reactDefault.default).useState([]);
+    const removeToast = (id)=>{
+        const filteredToasts = toasts?.filter((toast)=>toast.id !== id);
+        setToasts(filteredToasts);
+    };
+    const addToast = (event)=>{
+        event.preventDefault();
+        const id = crypto.randomUUID();
+        const toast = {
+            id,
+            variant: toastVariant,
+            message: toastMessage
+        };
+        setToasts((currToasts)=>[
+                ...currToasts,
+                toast
+            ]);
+        setToastVariant(VARIANT_OPTIONS[0]);
+        setToastMessage("");
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: (0, _toastPlaygroundModuleCssDefault.default).wrapper,
         children: [
@@ -27245,32 +27264,31 @@ function ToastPlayground() {
                         src: "/toast.png"
                     }, void 0, false, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 18,
+                        lineNumber: 35,
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                         children: "Toast Playground"
                     }, void 0, false, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 19,
+                        lineNumber: 36,
                         columnNumber: 5
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                lineNumber: 17,
+                lineNumber: 34,
                 columnNumber: 4
             }, this),
-            showToast && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _toastDefault.default), {
-                variant: toastVariant,
-                message: toastMessage,
-                closeHandler: ()=>setShowToast(false)
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _toastShelfDefault.default), {
+                toasts: toasts,
+                handleClose: removeToast
             }, void 0, false, {
                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                lineNumber: 23,
-                columnNumber: 5
+                lineNumber: 39,
+                columnNumber: 4
             }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
                 className: (0, _toastPlaygroundModuleCssDefault.default).controlsWrapper,
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27285,7 +27303,7 @@ function ToastPlayground() {
                                 children: "Message"
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 28,
+                                lineNumber: 43,
                                 columnNumber: 6
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27297,18 +27315,18 @@ function ToastPlayground() {
                                     onChange: (event)=>setToastMessage(event.target.value)
                                 }, void 0, false, {
                                     fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                    lineNumber: 32,
+                                    lineNumber: 47,
                                     columnNumber: 7
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 31,
+                                lineNumber: 46,
                                 columnNumber: 6
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 27,
+                        lineNumber: 42,
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27319,7 +27337,7 @@ function ToastPlayground() {
                                 children: "Variant"
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 42,
+                                lineNumber: 57,
                                 columnNumber: 6
                             }, this),
                             VARIANT_OPTIONS?.map((variant)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27335,25 +27353,25 @@ function ToastPlayground() {
                                                 onChange: ()=>setToastVariant(variant)
                                             }, void 0, false, {
                                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                                lineNumber: 46,
+                                                lineNumber: 61,
                                                 columnNumber: 9
                                             }, this),
                                             variant
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                        lineNumber: 45,
+                                        lineNumber: 60,
                                         columnNumber: 8
                                     }, this)
                                 }, variant, false, {
                                     fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                    lineNumber: 44,
+                                    lineNumber: 59,
                                     columnNumber: 7
                                 }, this))
                         ]
                     }, void 0, true, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 41,
+                        lineNumber: 56,
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27363,44 +27381,44 @@ function ToastPlayground() {
                                 className: (0, _toastPlaygroundModuleCssDefault.default).label
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 60,
+                                lineNumber: 75,
                                 columnNumber: 6
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: `${(0, _toastPlaygroundModuleCssDefault.default).inputWrapper} ${(0, _toastPlaygroundModuleCssDefault.default).radioWrapper}`,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                    onClick: ()=>setShowToast(true),
+                                    onClick: addToast,
                                     children: "Pop Toast!"
                                 }, void 0, false, {
                                     fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                    lineNumber: 62,
+                                    lineNumber: 77,
                                     columnNumber: 7
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 61,
+                                lineNumber: 76,
                                 columnNumber: 6
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 59,
+                        lineNumber: 74,
                         columnNumber: 5
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                lineNumber: 26,
+                lineNumber: 41,
                 columnNumber: 4
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-        lineNumber: 16,
+        lineNumber: 33,
         columnNumber: 3
     }, this);
 }
-_s(ToastPlayground, "LHHm91JGe38q2OCNatAXK0Mc+6M=");
+_s(ToastPlayground, "vGSViu8A4Jh2jIURd0VKOcT6E1c=");
 _c = ToastPlayground;
 exports.default = ToastPlayground;
 var _c;
@@ -27411,7 +27429,7 @@ $RefreshReg$(_c, "ToastPlayground");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../Button":"bNbfl","./ToastPlayground.module.css":"53bch","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../Toast":"4zgg1"}],"bNbfl":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../Button":"bNbfl","./ToastPlayground.module.css":"53bch","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../ToastShelf":"aliCa"}],"bNbfl":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>(0, _buttonDefault.default));
@@ -27635,7 +27653,66 @@ module.exports["titleMessageRow"] = `d7rB_G_titleMessageRow`;
 module.exports["titleMessageWrapper"] = `d7rB_G_titleMessageWrapper`;
 module.exports["wrapper"] = `d7rB_G_wrapper`;
 
-},{}],"4zgg1":[function(require,module,exports) {
+},{}],"aliCa":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>(0, _toastShelfDefault.default));
+var _toastShelf = require("./ToastShelf");
+parcelHelpers.exportAll(_toastShelf, exports);
+var _toastShelfDefault = parcelHelpers.interopDefault(_toastShelf);
+
+},{"./ToastShelf":"dCMl0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dCMl0":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$9db9 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$9db9.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _toast = require("../Toast");
+var _toastDefault = parcelHelpers.interopDefault(_toast);
+var _toastShelfModuleCss = require("./ToastShelf.module.css");
+var _toastShelfModuleCssDefault = parcelHelpers.interopDefault(_toastShelfModuleCss);
+function ToastShelf({ toasts , handleClose  }) {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ol", {
+        className: (0, _toastShelfModuleCssDefault.default).wrapper,
+        children: toasts?.map(({ id , variant , message  })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                className: (0, _toastShelfModuleCssDefault.default).toastWrapper,
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _toastDefault.default), {
+                    variant: variant,
+                    closeHandler: ()=>handleClose(id),
+                    children: message
+                }, void 0, false, {
+                    fileName: "src/components/ToastShelf/ToastShelf.js",
+                    lineNumber: 11,
+                    columnNumber: 6
+                }, this)
+            }, id, false, {
+                fileName: "src/components/ToastShelf/ToastShelf.js",
+                lineNumber: 10,
+                columnNumber: 5
+            }, this))
+    }, void 0, false, {
+        fileName: "src/components/ToastShelf/ToastShelf.js",
+        lineNumber: 8,
+        columnNumber: 3
+    }, this);
+}
+_c = ToastShelf;
+exports.default = ToastShelf;
+var _c;
+$RefreshReg$(_c, "ToastShelf");
+
+  $parcel$ReactRefreshHelpers$9db9.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../Toast":"4zgg1","./ToastShelf.module.css":"8umuT","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"4zgg1":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>(0, _toastDefault.default));
@@ -27666,7 +27743,7 @@ const ICONS_BY_VARIANT = {
     success: (0, _reactFeather.CheckCircle),
     error: (0, _reactFeather.AlertOctagon)
 };
-function Toast({ variant ="notice" , message ="" , closeHandler  }) {
+function Toast({ variant ="notice" , children , closeHandler  }) {
     const Icon = ICONS_BY_VARIANT[variant];
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: `${(0, _toastModuleCssDefault.default).toast} ${(0, _toastModuleCssDefault.default)[variant]}`,
@@ -27687,7 +27764,7 @@ function Toast({ variant ="notice" , message ="" , closeHandler  }) {
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 className: (0, _toastModuleCssDefault.default).content,
-                children: message
+                children: children
             }, void 0, false, {
                 fileName: "src/components/Toast/Toast.js",
                 lineNumber: 23,
@@ -29842,6 +29919,12 @@ module.exports["notice"] = `GFhwnW_notice`;
 module.exports["success"] = `GFhwnW_success`;
 module.exports["toast"] = `GFhwnW_toast`;
 module.exports["warning"] = `GFhwnW_warning`;
+
+},{}],"8umuT":[function(require,module,exports) {
+module.exports["toast"] = `_YfUPa_toast`;
+module.exports["toast"];
+module.exports["toastWrapper"] = `_YfUPa_toastWrapper`;
+module.exports["wrapper"] = `_YfUPa_wrapper`;
 
 },{}],"cjGwk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
