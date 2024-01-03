@@ -162,6 +162,90 @@ body {
   display: block;
 }
 
+._iOXHW_showWrapper {
+  font-size: .5rem;
+}
+
+._iOXHW_wrapper {
+  clip: rect(0 0 0 0);
+  border: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+.GFhwnW_toast {
+  color: #000;
+  color-scheme: light;
+  box-shadow: var(--shadow-elevation-medium);
+  background: #fff;
+  border-radius: 16px;
+  align-items: center;
+  gap: 16px;
+  width: 350px;
+  max-width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.GFhwnW_content {
+  flex: 1;
+  padding: 12px 0;
+  font-weight: 600;
+}
+
+.GFhwnW_iconContainer {
+  flex-shrink: 0;
+  padding: 16px 0 16px 16px;
+}
+
+.GFhwnW_iconContainer svg {
+  display: block;
+}
+
+.GFhwnW_closeButton {
+  cursor: pointer;
+  background: none;
+  border: none;
+  flex-shrink: 0;
+  padding: 16px;
+}
+
+.GFhwnW_notice {
+  background: var(--color-notice-bg);
+}
+
+.GFhwnW_notice .GFhwnW_iconContainer {
+  color: var(--color-notice);
+}
+
+.GFhwnW_warning {
+  background: var(--color-warning-bg);
+}
+
+.GFhwnW_warning .GFhwnW_iconContainer {
+  color: var(--color-warning);
+}
+
+.GFhwnW_success {
+  background: var(--color-success-bg);
+}
+
+.GFhwnW_success .GFhwnW_iconContainer {
+  color: var(--color-success);
+}
+
+.GFhwnW_error {
+  background: var(--color-error-bg);
+}
+
+.GFhwnW_error .GFhwnW_iconContainer {
+  color: var(--color-error);
+}
+
 .BOBUQq_wrapper {
   text-align: center;
   max-width: 500px;
