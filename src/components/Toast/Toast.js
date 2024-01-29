@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { AlertOctagon, AlertTriangle, CheckCircle, Info, X } from 'react-feather';
 
 import VisuallyHidden from '../VisuallyHidden';
@@ -31,5 +32,10 @@ function Toast({ variant = 'notice', children, closeHandler }) {
 	);
 }
 
-export default Toast;
+Toast.propTypes = {
+	variant: PropTypes.string,
+	children: PropTypes.element,
+	closeHandler: PropTypes.func,
+};
 
+export default Toast;

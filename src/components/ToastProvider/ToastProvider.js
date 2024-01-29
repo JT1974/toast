@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const ToastContext = React.createContext();
 
@@ -19,6 +20,10 @@ function ToastProvider({ children }) {
 		setToasts(filteredToasts);
 	};
 
+	const removeAllToasts = () => {
+		setToasts([]);
+	};
+
 	const addToast = (event) => {
 		event.preventDefault();
 
@@ -34,24 +39,21 @@ function ToastProvider({ children }) {
 
 	const addToastMessage = setToastMessage;
 
-	React.useEffect(() => {
-		const removeAllToasts = (event) => {
-			if (event.code !== 'Escape') {
-				return;
-			}
-
-			setToasts([]);
-		};
-
-		document.addEventListener('keydown', removeAllToasts);
-
-		return () => document.removeEventListener('keydown', removeAllToasts);
-	}, []);
-
-	const value = { toasts, removeToast, addToast, toastVariant, changeToastVariant, toastMessage, addToastMessage };
+	const value = {
+		toasts,
+		removeToast,
+		removeAllToasts,
+		addToast,
+		toastVariant,
+		changeToastVariant,
+		toastMessage,
+		addToastMessage,
+	};
 
 	return <ToastContext.Provider value={value}>{children}</ToastContext.Provider>;
 }
+
+ToastProvider.propTypes = { children: PropTypes.element };
 
 export default ToastProvider;
 
