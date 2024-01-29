@@ -3,12 +3,14 @@ import React from 'react';
 import Button from '../Button';
 import ToastShelf from '../ToastShelf';
 import { VARIANT_OPTIONS, useToast } from '../ToastProvider/ToastProvider';
+import useEscapeKey from '../../hooks/useEscapeKey';
 
 import styles from './ToastPlayground.module.css';
 
 function ToastPlayground() {
-	const { toasts, removeToast, addToast, toastVariant, changeToastVariant, toastMessage, addToastMessage } =
-		useToast();
+	const { addToast, toastVariant, changeToastVariant, toastMessage, addToastMessage } = useToast();
+
+	useEscapeKey();
 
 	return (
 		<div className={styles.wrapper}>
@@ -16,8 +18,6 @@ function ToastPlayground() {
 				<img alt='Cute toast mascot' src='/toast.png' />
 				<h1>Toast Playground</h1>
 			</header>
-
-			<ToastShelf />
 
 			<form className={styles.controlsWrapper}>
 				<div className={styles.row}>
@@ -59,6 +59,8 @@ function ToastPlayground() {
 					</div>
 				</div>
 			</form>
+
+			<ToastShelf />
 		</div>
 	);
 }
