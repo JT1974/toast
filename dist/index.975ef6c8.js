@@ -27656,6 +27656,9 @@ function ToastShelf() {
     const { toasts , removeToast  } = (0, _toastProvider.useToast)();
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ol", {
         className: (0, _toastShelfModuleCssDefault.default).wrapper,
+        role: "region",
+        "aria-live": "polite",
+        "aria-label": "Notification",
         children: toasts?.map(({ id , variant , message  })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                 className: (0, _toastShelfModuleCssDefault.default).toastWrapper,
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _toastDefault.default), {
@@ -27693,7 +27696,7 @@ $RefreshReg$(_c, "ToastShelf");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../Toast":"4zgg1","./ToastShelf.module.css":"8umuT","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../ToastProvider/ToastProvider":"4NsNf"}],"4zgg1":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../Toast":"4zgg1","./ToastShelf.module.css":"8umuT","../ToastProvider/ToastProvider":"4NsNf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"4zgg1":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>(0, _toastDefault.default));
@@ -27745,8 +27748,20 @@ function Toast({ variant ="notice" , children , closeHandler  }) {
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 className: (0, _toastModuleCssDefault.default).content,
-                children: children
-            }, void 0, false, {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _visuallyHiddenDefault.default), {
+                        children: [
+                            variant,
+                            " - "
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Toast/Toast.js",
+                        lineNumber: 24,
+                        columnNumber: 5
+                    }, this),
+                    children
+                ]
+            }, void 0, true, {
                 fileName: "src/components/Toast/Toast.js",
                 lineNumber: 23,
                 columnNumber: 4
@@ -27754,25 +27769,18 @@ function Toast({ variant ="notice" , children , closeHandler  }) {
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 className: (0, _toastModuleCssDefault.default).closeButton,
                 onClick: closeHandler,
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactFeather.X), {
-                        size: 24
-                    }, void 0, false, {
-                        fileName: "src/components/Toast/Toast.js",
-                        lineNumber: 25,
-                        columnNumber: 5
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _visuallyHiddenDefault.default), {
-                        children: "Dismiss message"
-                    }, void 0, false, {
-                        fileName: "src/components/Toast/Toast.js",
-                        lineNumber: 26,
-                        columnNumber: 5
-                    }, this)
-                ]
-            }, void 0, true, {
+                "aria-label": "Dismiss message",
+                "aria-live": "off",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactFeather.X), {
+                    size: 24
+                }, void 0, false, {
+                    fileName: "src/components/Toast/Toast.js",
+                    lineNumber: 28,
+                    columnNumber: 5
+                }, this)
+            }, void 0, false, {
                 fileName: "src/components/Toast/Toast.js",
-                lineNumber: 24,
+                lineNumber: 27,
                 columnNumber: 4
             }, this)
         ]
@@ -29961,6 +29969,14 @@ function ToastProvider({ children  }) {
     };
     const changeToastVariant = setToastVariant;
     const addToastMessage = setToastMessage;
+    (0, _reactDefault.default).useEffect(()=>{
+        const removeAllToasts = (event)=>{
+            if (event.code !== "Escape") return;
+            setToasts([]);
+        };
+        document.addEventListener("keydown", removeAllToasts);
+        return ()=>document.removeEventListener("keydown", removeAllToasts);
+    }, []);
     const value = {
         toasts,
         removeToast,
@@ -29975,11 +29991,11 @@ function ToastProvider({ children  }) {
         children: children
     }, void 0, false, {
         fileName: "src/components/ToastProvider/ToastProvider.js",
-        lineNumber: 39,
+        lineNumber: 53,
         columnNumber: 9
     }, this);
 }
-_s1(ToastProvider, "vGSViu8A4Jh2jIURd0VKOcT6E1c=");
+_s1(ToastProvider, "tq6GigHdYAD1rfSuB6ZASb97iDA=");
 _c = ToastProvider;
 exports.default = ToastProvider;
 var _c;
