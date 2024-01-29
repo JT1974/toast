@@ -21,4 +21,3 @@ function ToastShelf() {
 }
 
 export default ToastShelf;
-
