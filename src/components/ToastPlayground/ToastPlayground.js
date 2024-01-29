@@ -1,5 +1,7 @@
 import React from 'react';
 
+import mascot from '../../../assets/toast.png';
+
 import Button from '../Button';
 import ToastShelf from '../ToastShelf';
 import { VARIANT_OPTIONS, useToast } from '../ToastProvider/ToastProvider';
@@ -15,7 +17,7 @@ function ToastPlayground() {
 	return (
 		<div className={styles.wrapper}>
 			<header>
-				<img alt='Cute toast mascot' src='/toast.png' />
+				<img alt='Cute toast mascot' src={mascot} />
 				<h1>Toast Playground</h1>
 			</header>
 
