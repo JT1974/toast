@@ -34,6 +34,20 @@ function ToastProvider({ children }) {
 
 	const addToastMessage = setToastMessage;
 
+	React.useEffect(() => {
+		const removeAllToasts = (event) => {
+			if (event.code !== 'Escape') {
+				return;
+			}
+
+			setToasts([]);
+		};
+
+		document.addEventListener('keydown', removeAllToasts);
+
+		return () => document.removeEventListener('keydown', removeAllToasts);
+	}, []);
+
 	const value = { toasts, removeToast, addToast, toastVariant, changeToastVariant, toastMessage, addToastMessage };
 
 	return <ToastContext.Provider value={value}>{children}</ToastContext.Provider>;
