@@ -2,32 +2,13 @@ import React from 'react';
 
 import Button from '../Button';
 import ToastShelf from '../ToastShelf';
+import { VARIANT_OPTIONS, useToast } from '../ToastProvider/ToastProvider';
 
 import styles from './ToastPlayground.module.css';
 
-const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
-
 function ToastPlayground() {
-	const [toastVariant, setToastVariant] = React.useState(VARIANT_OPTIONS[0]);
-	const [toastMessage, setToastMessage] = React.useState('');
-	const [toasts, setToasts] = React.useState([]);
-
-	const removeToast = (id) => {
-		const filteredToasts = toasts?.filter((toast) => toast.id !== id);
-
-		setToasts(filteredToasts);
-	};
-
-	const addToast = (event) => {
-		event.preventDefault();
-
-		const id = crypto.randomUUID();
-		const toast = { id, variant: toastVariant, message: toastMessage };
-
-		setToasts((currToasts) => [...currToasts, toast]);
-		setToastVariant(VARIANT_OPTIONS[0]);
-		setToastMessage('');
-	};
+	const { toasts, removeToast, addToast, toastVariant, changeToastVariant, toastMessage, addToastMessage } =
+		useToast();
 
 	return (
 		<div className={styles.wrapper}>
@@ -36,7 +17,7 @@ function ToastPlayground() {
 				<h1>Toast Playground</h1>
 			</header>
 
-			<ToastShelf toasts={toasts} handleClose={removeToast} />
+			<ToastShelf />
 
 			<form className={styles.controlsWrapper}>
 				<div className={styles.row}>
@@ -48,7 +29,7 @@ function ToastPlayground() {
 							id='message'
 							className={styles.messageInput}
 							value={toastMessage}
-							onChange={(event) => setToastMessage(event.target.value)}
+							onChange={(event) => addToastMessage(event.target.value)}
 						/>
 					</div>
 				</div>
@@ -63,7 +44,7 @@ function ToastPlayground() {
 									type='radio'
 									name='variant'
 									checked={toastVariant === variant}
-									onChange={() => setToastVariant(variant)}
+									onChange={() => changeToastVariant(variant)}
 								/>
 								{variant}
 							</label>
