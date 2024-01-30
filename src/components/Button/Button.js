@@ -8,7 +8,8 @@ function Button({ className = '', ...delegated }) {
 }
 
 Button.propTypes = {
-	className: PropTypes.className,
+	className: PropTypes.func,
 };
 
 export default Button;
+

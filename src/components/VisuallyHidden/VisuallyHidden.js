@@ -41,8 +41,9 @@ const VisuallyHidden = ({ children, className = '', ...delegated }) => {
 };
 
 VisuallyHidden.propTypes = {
-	children: PropTypes.element,
-	className: PropTypes.className,
+	children: PropTypes.array,
+	className: PropTypes.func,
 };
 
 export default VisuallyHidden;
+

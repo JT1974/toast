@@ -56,4 +56,3 @@ function ToastProvider({ children }) {
 ToastProvider.propTypes = { children: PropTypes.element };
 
 export default ToastProvider;
-
