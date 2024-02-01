@@ -66,112 +66,6 @@ body {
   font-weight: 600;
 }
 
-._iOXHW_showWrapper {
-  font-size: .5rem;
-}
-
-._iOXHW_wrapper {
-  clip: rect(0 0 0 0);
-  border: 0;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  position: absolute;
-  overflow: hidden;
-}
-
-.GFhwnW_toast {
-  color: #000;
-  color-scheme: light;
-  box-shadow: var(--shadow-elevation-medium);
-  background: #fff;
-  border-radius: 16px;
-  align-items: center;
-  gap: 16px;
-  width: 350px;
-  max-width: 100%;
-  display: flex;
-  position: relative;
-}
-
-.GFhwnW_content {
-  flex: 1;
-  padding: 12px 0;
-  font-weight: 600;
-}
-
-.GFhwnW_iconContainer {
-  flex-shrink: 0;
-  padding: 16px 0 16px 16px;
-}
-
-.GFhwnW_iconContainer svg {
-  display: block;
-}
-
-.GFhwnW_closeButton {
-  cursor: pointer;
-  background: none;
-  border: none;
-  flex-shrink: 0;
-  padding: 16px;
-}
-
-.GFhwnW_notice {
-  background: var(--color-notice-bg);
-}
-
-.GFhwnW_notice .GFhwnW_iconContainer {
-  color: var(--color-notice);
-}
-
-.GFhwnW_warning {
-  background: var(--color-warning-bg);
-}
-
-.GFhwnW_warning .GFhwnW_iconContainer {
-  color: var(--color-warning);
-}
-
-.GFhwnW_success {
-  background: var(--color-success-bg);
-}
-
-.GFhwnW_success .GFhwnW_iconContainer {
-  color: var(--color-success);
-}
-
-.GFhwnW_error {
-  background: var(--color-error-bg);
-}
-
-.GFhwnW_error .GFhwnW_iconContainer {
-  color: var(--color-error);
-}
-
-@keyframes _YfUPa_toast {
-  from {
-    transform: translateX(calc(100% + 64px));
-  }
-}
-
-._YfUPa_wrapper {
-  flex-direction: column;
-  gap: 16px;
-  padding: 16px;
-  list-style-type: none;
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-
-._YfUPa_toastWrapper {
-  will-change: transform;
-  animation: .8s cubic-bezier(0, .46, 0, 1.04) both _YfUPa_toast;
-}
-
 .d7rB_G_wrapper {
   max-width: 800px;
   margin: 0 auto;
@@ -292,6 +186,112 @@ body {
 
 .BOBUQq_wrapper p:not(:last-of-type) {
   margin-bottom: 1em;
+}
+
+._iOXHW_showWrapper {
+  font-size: .5rem;
+}
+
+._iOXHW_wrapper {
+  clip: rect(0 0 0 0);
+  border: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+.GFhwnW_toast {
+  color: #000;
+  color-scheme: light;
+  box-shadow: var(--shadow-elevation-medium);
+  background: #fff;
+  border-radius: 16px;
+  align-items: center;
+  gap: 16px;
+  width: 350px;
+  max-width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.GFhwnW_content {
+  flex: 1;
+  padding: 12px 0;
+  font-weight: 600;
+}
+
+.GFhwnW_iconContainer {
+  flex-shrink: 0;
+  padding: 16px 0 16px 16px;
+}
+
+.GFhwnW_iconContainer svg {
+  display: block;
+}
+
+.GFhwnW_closeButton {
+  cursor: pointer;
+  background: none;
+  border: none;
+  flex-shrink: 0;
+  padding: 16px;
+}
+
+.GFhwnW_notice {
+  background: var(--color-notice-bg);
+}
+
+.GFhwnW_notice .GFhwnW_iconContainer {
+  color: var(--color-notice);
+}
+
+.GFhwnW_warning {
+  background: var(--color-warning-bg);
+}
+
+.GFhwnW_warning .GFhwnW_iconContainer {
+  color: var(--color-warning);
+}
+
+.GFhwnW_success {
+  background: var(--color-success-bg);
+}
+
+.GFhwnW_success .GFhwnW_iconContainer {
+  color: var(--color-success);
+}
+
+.GFhwnW_error {
+  background: var(--color-error-bg);
+}
+
+.GFhwnW_error .GFhwnW_iconContainer {
+  color: var(--color-error);
+}
+
+@keyframes _YfUPa_toast {
+  from {
+    transform: translateX(calc(100% + 64px));
+  }
+}
+
+._YfUPa_wrapper {
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  list-style-type: none;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+._YfUPa_toastWrapper {
+  will-change: transform;
+  animation: .8s cubic-bezier(0, .46, 0, 1.04) both _YfUPa_toast;
 }
 
 /*# sourceMappingURL=index.5dc4bba7.css.map */

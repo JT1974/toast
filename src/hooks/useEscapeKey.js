@@ -1,16 +1,13 @@
 import React from 'react';
-import { useToast } from '../components/ToastProvider';
 
-const useEscapeKey = () => {
-	const { removeAllToasts } = useToast();
-
+const useEscapeKey = (handler) => {
 	React.useEffect(() => {
 		const listener = (event) => {
 			if (event.code !== 'Escape') {
 				return;
 			}
 
-			removeAllToasts();
+			handler();
 		};
 
 		document.addEventListener('keydown', listener);
@@ -22,3 +19,4 @@ const useEscapeKey = () => {
 };
 
 export default useEscapeKey;
+

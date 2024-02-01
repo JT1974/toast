@@ -27173,23 +27173,32 @@ var _footer = require("../Footer");
 var _footerDefault = parcelHelpers.interopDefault(_footer);
 var _toastProvider = require("../ToastProvider/ToastProvider");
 var _toastProviderDefault = parcelHelpers.interopDefault(_toastProvider);
+var _toastShelf = require("../ToastShelf");
+var _toastShelfDefault = parcelHelpers.interopDefault(_toastShelf);
 function App() {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _toastProviderDefault.default), {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _toastPlaygroundDefault.default), {}, void 0, false, {
-                    fileName: "src/components/App/App.js",
-                    lineNumber: 11,
-                    columnNumber: 5
-                }, this)
-            }, void 0, false, {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _toastPlaygroundDefault.default), {}, void 0, false, {
+                        fileName: "src/components/App/App.js",
+                        lineNumber: 12,
+                        columnNumber: 5
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _toastShelfDefault.default), {}, void 0, false, {
+                        fileName: "src/components/App/App.js",
+                        lineNumber: 13,
+                        columnNumber: 5
+                    }, this)
+                ]
+            }, void 0, true, {
                 fileName: "src/components/App/App.js",
-                lineNumber: 10,
+                lineNumber: 11,
                 columnNumber: 4
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footerDefault.default), {}, void 0, false, {
                 fileName: "src/components/App/App.js",
-                lineNumber: 13,
+                lineNumber: 15,
                 columnNumber: 4
             }, this)
         ]
@@ -27205,7 +27214,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../ToastPlayground":"kDkMV","../Footer":"cjGwk","../ToastProvider/ToastProvider":"4NsNf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"kDkMV":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../ToastPlayground":"kDkMV","../Footer":"cjGwk","../ToastProvider/ToastProvider":"4NsNf","../ToastShelf":"aliCa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"kDkMV":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>(0, _toastPlaygroundDefault.default));
@@ -27222,6 +27231,7 @@ $parcel$ReactRefreshHelpers$3065.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "VARIANT_OPTIONS", ()=>VARIANT_OPTIONS);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
@@ -27229,18 +27239,33 @@ var _toastPng = require("../../../assets/toast.png");
 var _toastPngDefault = parcelHelpers.interopDefault(_toastPng);
 var _button = require("../Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _toastShelf = require("../ToastShelf");
-var _toastShelfDefault = parcelHelpers.interopDefault(_toastShelf);
 var _toastProvider = require("../ToastProvider/ToastProvider");
-var _useEscapeKey = require("../../hooks/useEscapeKey");
-var _useEscapeKeyDefault = parcelHelpers.interopDefault(_useEscapeKey);
 var _toastPlaygroundModuleCss = require("./ToastPlayground.module.css");
 var _toastPlaygroundModuleCssDefault = parcelHelpers.interopDefault(_toastPlaygroundModuleCss);
 var _s = $RefreshSig$();
+const VARIANT_OPTIONS = [
+    "notice",
+    "warning",
+    "success",
+    "error"
+];
 function ToastPlayground() {
     _s();
-    const { addToast , toastVariant , changeToastVariant , toastMessage , addToastMessage  } = (0, _toastProvider.useToast)();
-    (0, _useEscapeKeyDefault.default)();
+    const [message, setMessage] = (0, _reactDefault.default).useState("");
+    const [variant, setVariant] = (0, _reactDefault.default).useState(VARIANT_OPTIONS[0]);
+    const { addToast  } = (0, _toastProvider.useToast)();
+    const submitHandler = (event)=>{
+        event.preventDefault();
+        const id = crypto.randomUUID();
+        const toast = {
+            id,
+            variant,
+            message
+        };
+        addToast(toast);
+        setVariant(VARIANT_OPTIONS[0]);
+        setMessage("");
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: (0, _toastPlaygroundModuleCssDefault.default).wrapper,
         children: [
@@ -27251,24 +27276,25 @@ function ToastPlayground() {
                         src: (0, _toastPngDefault.default)
                     }, void 0, false, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 20,
+                        lineNumber: 31,
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                         children: "Toast Playground"
                     }, void 0, false, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 21,
+                        lineNumber: 32,
                         columnNumber: 5
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                lineNumber: 19,
+                lineNumber: 30,
                 columnNumber: 4
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
                 className: (0, _toastPlaygroundModuleCssDefault.default).controlsWrapper,
+                onSubmit: submitHandler,
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         className: (0, _toastPlaygroundModuleCssDefault.default).row,
@@ -27282,7 +27308,7 @@ function ToastPlayground() {
                                 children: "Message"
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 26,
+                                lineNumber: 37,
                                 columnNumber: 6
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27290,22 +27316,22 @@ function ToastPlayground() {
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("textarea", {
                                     id: "message",
                                     className: (0, _toastPlaygroundModuleCssDefault.default).messageInput,
-                                    value: toastMessage,
-                                    onChange: (event)=>addToastMessage(event.target.value)
+                                    value: message,
+                                    onChange: (event)=>setMessage(event.target.value)
                                 }, void 0, false, {
                                     fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                    lineNumber: 30,
+                                    lineNumber: 41,
                                     columnNumber: 7
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 29,
+                                lineNumber: 40,
                                 columnNumber: 6
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 25,
+                        lineNumber: 36,
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27316,41 +27342,42 @@ function ToastPlayground() {
                                 children: "Variant"
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 40,
+                                lineNumber: 51,
                                 columnNumber: 6
                             }, this),
-                            (0, _toastProvider.VARIANT_OPTIONS)?.map((variant)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            VARIANT_OPTIONS?.map((option)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                     className: `${(0, _toastPlaygroundModuleCssDefault.default).inputWrapper} ${(0, _toastPlaygroundModuleCssDefault.default).radioWrapper}`,
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                                        htmlFor: `variant-${variant}`,
+                                        htmlFor: `variant-${option}`,
                                         children: [
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                                                id: `variant-${variant}`,
+                                                id: `variant-${option}`,
                                                 type: "radio",
-                                                name: "variant",
-                                                checked: toastVariant === variant,
-                                                onChange: ()=>changeToastVariant(variant)
+                                                name: "option",
+                                                value: option,
+                                                checked: option === variant,
+                                                onChange: ()=>setVariant(option)
                                             }, void 0, false, {
                                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                                lineNumber: 44,
+                                                lineNumber: 55,
                                                 columnNumber: 9
                                             }, this),
-                                            variant
+                                            option
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                        lineNumber: 43,
+                                        lineNumber: 54,
                                         columnNumber: 8
                                     }, this)
-                                }, variant, false, {
+                                }, option, false, {
                                     fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                    lineNumber: 42,
+                                    lineNumber: 53,
                                     columnNumber: 7
                                 }, this))
                         ]
                     }, void 0, true, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 39,
+                        lineNumber: 50,
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27360,52 +27387,45 @@ function ToastPlayground() {
                                 className: (0, _toastPlaygroundModuleCssDefault.default).label
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 58,
+                                lineNumber: 70,
                                 columnNumber: 6
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: `${(0, _toastPlaygroundModuleCssDefault.default).inputWrapper} ${(0, _toastPlaygroundModuleCssDefault.default).radioWrapper}`,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                    onClick: addToast,
                                     children: "Pop Toast!"
                                 }, void 0, false, {
                                     fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                    lineNumber: 60,
+                                    lineNumber: 72,
                                     columnNumber: 7
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                                lineNumber: 59,
+                                lineNumber: 71,
                                 columnNumber: 6
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                        lineNumber: 57,
+                        lineNumber: 69,
                         columnNumber: 5
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                lineNumber: 24,
-                columnNumber: 4
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _toastShelfDefault.default), {}, void 0, false, {
-                fileName: "src/components/ToastPlayground/ToastPlayground.js",
-                lineNumber: 65,
+                lineNumber: 35,
                 columnNumber: 4
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/ToastPlayground/ToastPlayground.js",
-        lineNumber: 18,
+        lineNumber: 29,
         columnNumber: 3
     }, this);
 }
-_s(ToastPlayground, "0rFYJ7FU7NDOV7aaa7FqBqLz5V8=", false, function() {
+_s(ToastPlayground, "RPNyk7ID00U8K+GIZlYxLRJTT3I=", false, function() {
     return [
-        (0, _toastProvider.useToast),
-        (0, _useEscapeKeyDefault.default)
+        (0, _toastProvider.useToast)
     ];
 });
 _c = ToastPlayground;
@@ -27418,7 +27438,7 @@ $RefreshReg$(_c, "ToastPlayground");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../assets/toast.png":"7nEC6","../Button":"bNbfl","../ToastShelf":"aliCa","../ToastProvider/ToastProvider":"4NsNf","../../hooks/useEscapeKey":"hXLbO","./ToastPlayground.module.css":"53bch","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7nEC6":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../assets/toast.png":"7nEC6","../Button":"bNbfl","../ToastProvider/ToastProvider":"4NsNf","./ToastPlayground.module.css":"53bch","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7nEC6":[function(require,module,exports) {
 module.exports = require("73be0a55d72768fb").getBundleURL("bLxZJ") + "toast.98a4b943.png" + "?" + Date.now();
 
 },{"73be0a55d72768fb":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -28421,7 +28441,199 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"7422ead32dcc1e6b":"786KC"}],"aliCa":[function(require,module,exports) {
+},{"7422ead32dcc1e6b":"786KC"}],"4NsNf":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$ad1d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$ad1d.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ToastContext", ()=>ToastContext);
+parcelHelpers.export(exports, "useToast", ()=>useToast);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _useEscapeKey = require("../../hooks/useEscapeKey");
+var _useEscapeKeyDefault = parcelHelpers.interopDefault(_useEscapeKey);
+var _s = $RefreshSig$(), _s1 = $RefreshSig$();
+const ToastContext = /*#__PURE__*/ (0, _reactDefault.default).createContext();
+const useToast = ()=>{
+    _s();
+    return (0, _reactDefault.default).useContext(ToastContext);
+};
+_s(useToast, "gDsCjeeItUuvgOWf1v4qoK9RF6k=");
+function ToastProvider({ children  }) {
+    _s1();
+    const [toasts, setToasts] = (0, _reactDefault.default).useState([]);
+    const addToast = (toast)=>{
+        setToasts((currToasts)=>[
+                ...currToasts,
+                toast
+            ]);
+    };
+    const removeToast = (id)=>{
+        const filteredToasts = toasts?.filter((toast)=>toast.id !== id);
+        setToasts(filteredToasts);
+    };
+    const removeAllToasts = (0, _reactDefault.default).useCallback(()=>{
+        setToasts([]);
+    }, []);
+    (0, _useEscapeKeyDefault.default)(removeAllToasts);
+    const value = {
+        toasts,
+        removeToast,
+        removeAllToasts,
+        addToast
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(ToastContext.Provider, {
+        value: value,
+        children: children
+    }, void 0, false, {
+        fileName: "src/components/ToastProvider/ToastProvider.js",
+        lineNumber: 37,
+        columnNumber: 9
+    }, this);
+}
+_s1(ToastProvider, "5LqkJqIpoDTKNL9LiBoSpAmWguk=", false, function() {
+    return [
+        (0, _useEscapeKeyDefault.default)
+    ];
+});
+_c = ToastProvider;
+ToastProvider.propTypes = {
+    children: (0, _propTypesDefault.default).array
+};
+exports.default = ToastProvider;
+var _c;
+$RefreshReg$(_c, "ToastProvider");
+
+  $parcel$ReactRefreshHelpers$ad1d.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../hooks/useEscapeKey":"hXLbO"}],"hXLbO":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$1558 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$1558.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _s = $RefreshSig$();
+const useEscapeKey = (handler)=>{
+    _s();
+    (0, _reactDefault.default).useEffect(()=>{
+        const listener = (event)=>{
+            if (event.code !== "Escape") return;
+            handler();
+        };
+        document.addEventListener("keydown", listener);
+        return ()=>document.removeEventListener("keydown", listener);
+    }, []);
+    return null;
+};
+_s(useEscapeKey, "OD7bBpZva5O2jO+Puf00hKivP7c=");
+exports.default = useEscapeKey;
+
+  $parcel$ReactRefreshHelpers$1558.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"53bch":[function(require,module,exports) {
+module.exports["controlsWrapper"] = `d7rB_G_controlsWrapper`;
+module.exports["inputWrapper"] = `d7rB_G_inputWrapper`;
+module.exports["label"] = `d7rB_G_label`;
+module.exports["messageInput"] = `d7rB_G_messageInput`;
+module.exports["radioWrapper"] = `d7rB_G_radioWrapper`;
+module.exports["row"] = `d7rB_G_row`;
+module.exports["titleMessageRow"] = `d7rB_G_titleMessageRow`;
+module.exports["titleMessageWrapper"] = `d7rB_G_titleMessageWrapper`;
+module.exports["wrapper"] = `d7rB_G_wrapper`;
+
+},{}],"cjGwk":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>(0, _footerDefault.default));
+var _footer = require("./Footer");
+parcelHelpers.exportAll(_footer, exports);
+var _footerDefault = parcelHelpers.interopDefault(_footer);
+
+},{"./Footer":"1iodz","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1iodz":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$7d2d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$7d2d.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _footerModuleCss = require("./Footer.module.css");
+var _footerModuleCssDefault = parcelHelpers.interopDefault(_footerModuleCss);
+function Footer() {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("footer", {
+        className: (0, _footerModuleCssDefault.default).wrapper,
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: [
+                    "This project is from",
+                    " ",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        href: "https://joyofreact.com",
+                        children: "The Joy of React"
+                    }, void 0, false, {
+                        fileName: "src/components/Footer/Footer.js",
+                        lineNumber: 10,
+                        columnNumber: 5
+                    }, this),
+                    ", a comprehensive React.js course."
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Footer/Footer.js",
+                lineNumber: 8,
+                columnNumber: 4
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: "\xa9 2022-present Joshua Comeau. All rights reserved."
+            }, void 0, false, {
+                fileName: "src/components/Footer/Footer.js",
+                lineNumber: 15,
+                columnNumber: 4
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/Footer/Footer.js",
+        lineNumber: 7,
+        columnNumber: 3
+    }, this);
+}
+_c = Footer;
+exports.default = Footer;
+var _c;
+$RefreshReg$(_c, "Footer");
+
+  $parcel$ReactRefreshHelpers$7d2d.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Footer.module.css":"dDD2s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"dDD2s":[function(require,module,exports) {
+module.exports["wrapper"] = `BOBUQq_wrapper`;
+
+},{}],"aliCa":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>(0, _toastShelfDefault.default));
@@ -28449,7 +28661,8 @@ var _toastProvider = require("../ToastProvider/ToastProvider");
 var _s = $RefreshSig$();
 function ToastShelf() {
     _s();
-    const { toasts , removeToast  } = (0, _toastProvider.useToast)();
+    const { toasts  } = (0, _toastProvider.useToast)();
+    if (toasts.length === 0) return null;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ol", {
         className: (0, _toastShelfModuleCssDefault.default).wrapper,
         role: "region",
@@ -28459,25 +28672,25 @@ function ToastShelf() {
                 className: (0, _toastShelfModuleCssDefault.default).toastWrapper,
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _toastDefault.default), {
                     variant: variant,
-                    closeHandler: ()=>removeToast(id),
+                    id: id,
                     children: message
                 }, void 0, false, {
                     fileName: "src/components/ToastShelf/ToastShelf.js",
-                    lineNumber: 14,
+                    lineNumber: 18,
                     columnNumber: 6
                 }, this)
             }, id, false, {
                 fileName: "src/components/ToastShelf/ToastShelf.js",
-                lineNumber: 13,
+                lineNumber: 17,
                 columnNumber: 5
             }, this))
     }, void 0, false, {
         fileName: "src/components/ToastShelf/ToastShelf.js",
-        lineNumber: 11,
+        lineNumber: 15,
         columnNumber: 3
     }, this);
 }
-_s(ToastShelf, "hDKWezg0iwBHWd7k0YqUAkfEZE4=", false, function() {
+_s(ToastShelf, "1YTCnXrq2qRowe0H/LBWLjtXoYc=", false, function() {
     return [
         (0, _toastProvider.useToast)
     ];
@@ -28517,15 +28730,19 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactFeather = require("react-feather");
 var _visuallyHidden = require("../VisuallyHidden");
 var _visuallyHiddenDefault = parcelHelpers.interopDefault(_visuallyHidden);
+var _toastProvider = require("../ToastProvider/ToastProvider");
 var _toastModuleCss = require("./Toast.module.css");
 var _toastModuleCssDefault = parcelHelpers.interopDefault(_toastModuleCss);
+var _s = $RefreshSig$();
 const ICONS_BY_VARIANT = {
     notice: (0, _reactFeather.Info),
     warning: (0, _reactFeather.AlertTriangle),
     success: (0, _reactFeather.CheckCircle),
     error: (0, _reactFeather.AlertOctagon)
 };
-function Toast({ variant ="notice" , children , closeHandler  }) {
+function Toast({ variant ="notice" , id , children  }) {
+    _s();
+    const { removeToast  } = (0, _toastProvider.useToast)();
     const Icon = ICONS_BY_VARIANT[variant];
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: `${(0, _toastModuleCssDefault.default).toast} ${(0, _toastModuleCssDefault.default)[variant]}`,
@@ -28536,12 +28753,12 @@ function Toast({ variant ="notice" , children , closeHandler  }) {
                     size: 24
                 }, void 0, false, {
                     fileName: "src/components/Toast/Toast.js",
-                    lineNumber: 22,
+                    lineNumber: 24,
                     columnNumber: 5
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/Toast/Toast.js",
-                lineNumber: 21,
+                lineNumber: 23,
                 columnNumber: 4
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -28554,45 +28771,50 @@ function Toast({ variant ="notice" , children , closeHandler  }) {
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Toast/Toast.js",
-                        lineNumber: 25,
+                        lineNumber: 27,
                         columnNumber: 5
                     }, this),
                     children
                 ]
             }, void 0, true, {
                 fileName: "src/components/Toast/Toast.js",
-                lineNumber: 24,
+                lineNumber: 26,
                 columnNumber: 4
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 className: (0, _toastModuleCssDefault.default).closeButton,
-                onClick: closeHandler,
+                onClick: ()=>removeToast(id),
                 "aria-label": "Dismiss message",
                 "aria-live": "off",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactFeather.X), {
                     size: 24
                 }, void 0, false, {
                     fileName: "src/components/Toast/Toast.js",
-                    lineNumber: 29,
+                    lineNumber: 36,
                     columnNumber: 5
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/Toast/Toast.js",
-                lineNumber: 28,
+                lineNumber: 30,
                 columnNumber: 4
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/Toast/Toast.js",
-        lineNumber: 20,
+        lineNumber: 22,
         columnNumber: 3
     }, this);
 }
+_s(Toast, "7rLaqBWl2r+Zx97eg5E2U91c6Vo=", false, function() {
+    return [
+        (0, _toastProvider.useToast)
+    ];
+});
 _c = Toast;
 Toast.propTypes = {
     variant: (0, _propTypesDefault.default).string,
-    children: (0, _propTypesDefault.default).element,
-    closeHandler: (0, _propTypesDefault.default).func
+    children: (0, _propTypesDefault.default).string,
+    id: (0, _propTypesDefault.default).string
 };
 exports.default = Toast;
 var _c;
@@ -28603,7 +28825,7 @@ $RefreshReg$(_c, "Toast");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-feather":"hblQm","../VisuallyHidden":"fj2ki","./Toast.module.css":"edJ1L","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"hblQm":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-feather":"hblQm","../VisuallyHidden":"fj2ki","./Toast.module.css":"edJ1L","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../ToastProvider/ToastProvider":"4NsNf"}],"hblQm":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Activity", ()=>(0, _activityDefault.default));
@@ -29976,229 +30198,6 @@ module.exports["toast"] = `_YfUPa_toast`;
 module.exports["toast"];
 module.exports["toastWrapper"] = `_YfUPa_toastWrapper`;
 module.exports["wrapper"] = `_YfUPa_wrapper`;
-
-},{}],"4NsNf":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$ad1d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$ad1d.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ToastContext", ()=>ToastContext);
-parcelHelpers.export(exports, "VARIANT_OPTIONS", ()=>VARIANT_OPTIONS);
-parcelHelpers.export(exports, "useToast", ()=>useToast);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _s = $RefreshSig$(), _s1 = $RefreshSig$();
-const ToastContext = /*#__PURE__*/ (0, _reactDefault.default).createContext();
-const VARIANT_OPTIONS = [
-    "notice",
-    "warning",
-    "success",
-    "error"
-];
-const useToast = ()=>{
-    _s();
-    return (0, _reactDefault.default).useContext(ToastContext);
-};
-_s(useToast, "gDsCjeeItUuvgOWf1v4qoK9RF6k=");
-function ToastProvider({ children  }) {
-    _s1();
-    const [toastVariant, setToastVariant] = (0, _reactDefault.default).useState(VARIANT_OPTIONS[0]);
-    const [toastMessage, setToastMessage] = (0, _reactDefault.default).useState("");
-    const [toasts, setToasts] = (0, _reactDefault.default).useState([]);
-    const removeToast = (id)=>{
-        const filteredToasts = toasts?.filter((toast)=>toast.id !== id);
-        setToasts(filteredToasts);
-    };
-    const removeAllToasts = ()=>{
-        setToasts([]);
-    };
-    const addToast = (event)=>{
-        event.preventDefault();
-        const id = crypto.randomUUID();
-        const toast = {
-            id,
-            variant: toastVariant,
-            message: toastMessage
-        };
-        setToasts((currToasts)=>[
-                ...currToasts,
-                toast
-            ]);
-        setToastVariant(VARIANT_OPTIONS[0]);
-        setToastMessage("");
-    };
-    const changeToastVariant = setToastVariant;
-    const addToastMessage = setToastMessage;
-    const value = {
-        toasts,
-        removeToast,
-        removeAllToasts,
-        addToast,
-        toastVariant,
-        changeToastVariant,
-        toastMessage,
-        addToastMessage
-    };
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(ToastContext.Provider, {
-        value: value,
-        children: children
-    }, void 0, false, {
-        fileName: "src/components/ToastProvider/ToastProvider.js",
-        lineNumber: 53,
-        columnNumber: 9
-    }, this);
-}
-_s1(ToastProvider, "vGSViu8A4Jh2jIURd0VKOcT6E1c=");
-_c = ToastProvider;
-ToastProvider.propTypes = {
-    children: (0, _propTypesDefault.default).element
-};
-exports.default = ToastProvider;
-var _c;
-$RefreshReg$(_c, "ToastProvider");
-
-  $parcel$ReactRefreshHelpers$ad1d.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"hXLbO":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$1558 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$1558.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _toastProvider = require("../components/ToastProvider");
-var _s = $RefreshSig$();
-const useEscapeKey = ()=>{
-    _s();
-    const { removeAllToasts  } = (0, _toastProvider.useToast)();
-    (0, _reactDefault.default).useEffect(()=>{
-        const listener = (event)=>{
-            if (event.code !== "Escape") return;
-            removeAllToasts();
-        };
-        document.addEventListener("keydown", listener);
-        return ()=>document.removeEventListener("keydown", listener);
-    }, []);
-    return null;
-};
-_s(useEscapeKey, "qK0d1jKZxl372EZ7DGlZ6qZX9Sk=", false, function() {
-    return [
-        (0, _toastProvider.useToast)
-    ];
-});
-exports.default = useEscapeKey;
-
-  $parcel$ReactRefreshHelpers$1558.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"21dqq","../components/ToastProvider":"kY0Qf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"kY0Qf":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "default", ()=>(0, _toastProviderDefault.default));
-var _toastProvider = require("./ToastProvider");
-parcelHelpers.exportAll(_toastProvider, exports);
-var _toastProviderDefault = parcelHelpers.interopDefault(_toastProvider);
-
-},{"./ToastProvider":"4NsNf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"53bch":[function(require,module,exports) {
-module.exports["controlsWrapper"] = `d7rB_G_controlsWrapper`;
-module.exports["inputWrapper"] = `d7rB_G_inputWrapper`;
-module.exports["label"] = `d7rB_G_label`;
-module.exports["messageInput"] = `d7rB_G_messageInput`;
-module.exports["radioWrapper"] = `d7rB_G_radioWrapper`;
-module.exports["row"] = `d7rB_G_row`;
-module.exports["titleMessageRow"] = `d7rB_G_titleMessageRow`;
-module.exports["titleMessageWrapper"] = `d7rB_G_titleMessageWrapper`;
-module.exports["wrapper"] = `d7rB_G_wrapper`;
-
-},{}],"cjGwk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "default", ()=>(0, _footerDefault.default));
-var _footer = require("./Footer");
-parcelHelpers.exportAll(_footer, exports);
-var _footerDefault = parcelHelpers.interopDefault(_footer);
-
-},{"./Footer":"1iodz","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1iodz":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$7d2d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$7d2d.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _footerModuleCss = require("./Footer.module.css");
-var _footerModuleCssDefault = parcelHelpers.interopDefault(_footerModuleCss);
-function Footer() {
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("footer", {
-        className: (0, _footerModuleCssDefault.default).wrapper,
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                children: [
-                    "This project is from",
-                    " ",
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                        href: "https://joyofreact.com",
-                        children: "The Joy of React"
-                    }, void 0, false, {
-                        fileName: "src/components/Footer/Footer.js",
-                        lineNumber: 10,
-                        columnNumber: 9
-                    }, this),
-                    ", a comprehensive React.js course."
-                ]
-            }, void 0, true, {
-                fileName: "src/components/Footer/Footer.js",
-                lineNumber: 8,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                children: "\xa9 2022-present Joshua Comeau. All rights reserved."
-            }, void 0, false, {
-                fileName: "src/components/Footer/Footer.js",
-                lineNumber: 15,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "src/components/Footer/Footer.js",
-        lineNumber: 7,
-        columnNumber: 5
-    }, this);
-}
-_c = Footer;
-exports.default = Footer;
-var _c;
-$RefreshReg$(_c, "Footer");
-
-  $parcel$ReactRefreshHelpers$7d2d.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Footer.module.css":"dDD2s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"dDD2s":[function(require,module,exports) {
-module.exports["wrapper"] = `BOBUQq_wrapper`;
 
 },{}]},["igKGj","1xC6H","8lqZg"], "8lqZg", "parcelRequire50c3")
 
